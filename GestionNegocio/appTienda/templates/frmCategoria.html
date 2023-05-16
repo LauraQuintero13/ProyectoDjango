@@ -1,0 +1,50 @@
+{% extends "index.html" %}
+
+{% block encabezado %}
+    {% include "encabezado.html" %}
+{% endblock %}
+
+{% block menu %}
+    {% include "menu.html" %}
+{% endblock %}
+
+{% block contenido %}
+<div class="container h-100 /frmCategoria/">
+    {% csrf_token %}
+    <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+            <div class="border ">
+                <div class="bg-white p-5 text-center">
+                    <form action="/agregarCategoria/" method="post" class="was-validated">
+                        {% csrf_token %}
+                        <div>
+                            <h3 class="mb-5 fw-bold">AGREGAR CATEGORIA</h3>
+                        </div>
+                        <div class="form-floating">
+                            <input type="text" name="txtNombre" id="txtNombre" class="form-control" required
+                                placeholder="Ingrese el nombre de la categoria">
+                            <label for="txtNombre">Nombre Categoria</label>
+                        </div>  
+                        <div class="mt-5">
+                            <button class="btn  mb-2 fw-bold" style="background-color: #181818; color: white;" >AGREGAR</button>
+                        </div>
+                    </form>
+                    <div>
+                        {% if mensaje %}
+                            {% if estado %}
+                                <script>
+                                    Swal.fire("AGREGAR CATEGORIA", '{{mensaje}}', "success")
+                                </script>
+                            {% else %}
+                                <script>
+                                    Swal.fire("AGREGAR CATEGORIA", '{{mensaje}}', "warning")
+                                </script>
+                            {% endif %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
